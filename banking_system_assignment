@@ -1,30 +1,31 @@
 #include <bits/stdc++.h>
 
+ 
 using namespace std;
 
 class Account
 {
 private:
-	string name;
-	vector<string> transaction_history;
-	string address;
-	int account_number;
-	int balance;
+	string name;//name of the account holder
+	vector<string> transaction_history;//log all of the transactions performed
+	string address;//address of the account holder
+	int account_number;//unique account number
+	int balance;//current balance accouunt
 
 public:
-	Account(string name, string address, int account_number, int initial_deposit)
+	Account(string name, string address, int account_number, int initial_deposit)//constructor to initialize an account object
 		: name(name), address(address), account_number(account_number), balance(initial_deposit)
 	{
 		transaction_history.push_back("Account created with initial deposit: " + to_string(initial_deposit));
 	}
 
-	void deposit(int amount)
+	void deposit(int amount)//method to create a deposit
 	{
 		balance += amount;
 		transaction_history.push_back("Deposited: " + to_string(amount) + ", New balance: " + to_string(balance));
 	}
 
-	void withdraw(int amount)
+	void withdraw(int amount)//withdrawing method
 	{
 		if (amount > balance)
 		{
@@ -38,7 +39,7 @@ public:
 		}
 	}
 
-	void display_transaction_history() const
+	void display_transaction_history() const//displaying the account transaction history
 	{
 		cout << "Transaction history for account: " << account_number << endl;
 		for (const auto &entry : transaction_history)
@@ -62,7 +63,7 @@ public:
 class Bank
 {
 private:
-	vector<Account> accounts;
+	vector<Account> accounts;//initializing all methods of the account class
 	int next_account_number = 1;
 
 public:
